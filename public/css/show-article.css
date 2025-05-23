@@ -28,3 +28,9 @@
     margin-bottom: 1rem;
     display: block;
 }
+
+.form-actions {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
