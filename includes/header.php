@@ -1,21 +1,21 @@
-<header>
-    <?php
-    $currentUser = $currentUser ?? false;
-    ?>
+<?php
+$currentUser = $currentUser ?? false;
+?>
 
+<header>
     <a href="/" class="logo">Blog</a>
     <ul class="header-menu">
-        <?php if ($currentUser): ?>
+        <?php if ($currentUser) : ?>
             <li class=<?= $_SERVER['REQUEST_URI'] === '/form-article.php' ? 'active' : '' ?>>
                 <a href="/form-article.php">Écrire un article</a>
+            </li>
+            <li class="<?= $_SERVER['REQUEST_URI'] === '/profile.php' ? 'active' : '' ?> header-profile">
+                <a href="/profile.php"><?= $currentUser['firstname'][0] . $currentUser['lastname'][0] ?></a>
             </li>
             <li>
                 <a href="/auth-logout.php">Déconnexion</a>
             </li>
-            <li class=<?= $_SERVER['REQUEST_URI'] === '/profil.php' ? 'active' : '' ?>>
-                <a href="/profil.php">Mon profil</a>
-            </li>
-        <?php else: ?>
+        <?php else : ?>
             <li class=<?= $_SERVER['REQUEST_URI'] === '/auth-register.php' ? 'active' : '' ?>>
                 <a href="/auth-register.php">Inscription</a>
             </li>

@@ -6,6 +6,7 @@ if (!$currentUser) {
     header('Location: /');
 }
 $articleDB = require_once __DIR__ . '/database/models/ArticleDB.php';
+
 const ERROR_REQUIRED = 'Veuillez renseigner ce champ';
 const ERROR_TITLE_TOO_SHORT = 'Le titre est trop court';
 const ERROR_CONTENT_TOO_SHORT = 'L\'article est trop court';
@@ -22,6 +23,9 @@ $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
 if ($id) {
     $article = $articleDB->fetchOne($id);
+    if ($article['author'] !== $currentUser['id']) {
+        header('Location: /');
+    }
     $title = $article['title'];
     $image = $article['image'];
     $category = $article['category'];
