@@ -8,7 +8,7 @@ class ArticleDB
     private PDOStatement $statementReadAll;
     private PDOStatement $statementReadUserAll;
 
-    function __construct(private PDO $pdo)
+    function __construct(private readonly PDO $pdo)
     {
         $this->statementCreateOne = $pdo->prepare('
       INSERT INTO article (
